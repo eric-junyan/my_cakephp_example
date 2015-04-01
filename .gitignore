@@ -1,0 +1,4 @@
+*.swp
+*.log
+app/tmp/cache/**
+app/tmp/logs/**
