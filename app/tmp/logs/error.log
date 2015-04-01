@@ -1,0 +1,9 @@
+2015-04-01 09:58:40 Error: [MissingControllerException] Controller class CakephpController could not be found.
+Exception Attributes: array (
+  'class' => 'CakephpController',
+  'plugin' => NULL,
+)
+Request URL: /cakephp/
+Stack Trace:
+#0 /Users/chen.junyan/my_example/app/webroot/index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
