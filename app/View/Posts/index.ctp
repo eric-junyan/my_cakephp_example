@@ -1,5 +1,9 @@
 <!-- File: /app/View/Posts/index.ctp -->
 <h1>Blog posts</h1>
+<?php echo $this->Html->link(
+     'Add Post',
+     array('controller' => 'posts', 'action' => 'add')
+); ?>
 <table>
     <tr>
          <th>Id</th>
@@ -16,7 +20,7 @@
                 <?php echo $this->Html->link($post['Post']['title'],
   array('controller' => 'posts', 'action' => 'view', $post['Post']['id'])); ?>
             </td>
-            <td><?php echo $post['Post']['created_at']; ?></td>
+            <td><?php echo date('Y/m/d H:i:s', $post['Post']['created_at']); ?></td>
          </tr>
     <?php endforeach; ?>
     <?php unset($post); ?>
