@@ -24,11 +24,11 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 	<title>
 		<?php echo $cakeDescription ?>:
 		<?php echo $this->fetch('title'); ?>
-    </title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	</title>
 	<?php
 		echo $this->Html->meta('icon');
         echo $this->Html->css('bootstrap.min');
+        echo $this->Html->css('bootstrap.origin.min');
         echo $this->Html->css('bootstrap-theme.min');
         echo $this->Html->css('starter-template');
         echo $this->Html->script('jquery-2.1.3.min');
@@ -40,7 +40,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 //		echo $this->fetch('script');
 	?>
 </head>
-<body>
+<body data-spy="scroll" data-target="#scroll-spy">
 	<div id="container">
 <!--
         <div id="header">

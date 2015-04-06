@@ -9,16 +9,14 @@
 ));?>
 
     <fieldset>
-        <legend>Post</legend>
+        <h2>New Post</h2>
         <?php
-echo $this->Form->input('title');
-echo $this->Form->input('body', array('rows' => '3'));
-echo $this->Form->submit('Submit', array(
-    'div' => 'form-group',
-    'class' => 'btn btn-default'
-
-));
-?>
-
+            echo $this->Form->input('title');
+            echo $this->Form->input('body', array('rows' => '25'));
+            echo $this->Form->submit('Submit', array(
+                'div' => 'form-group',
+                'class' => 'btn btn-default'
+            ));
+       ?>
     <fieldset>
 <?php echo $this->Form->end(); ?>

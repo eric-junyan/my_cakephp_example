@@ -29,6 +29,11 @@ body {
     margin-left: 10px;
 }
 
+.col-lg-4 p.blog-text {
+    text-align: left;
+    min-height: 120px;
+}
+
 .col-lg-4 .blog-time {
     color: #999
 }

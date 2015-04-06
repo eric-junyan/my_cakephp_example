@@ -3,6 +3,8 @@
 body {
     font-family: Georgia, "Times New Roman", Times, serif;
     color: #555;
+    position: relative;
+    padding-top: 40px;
 }
 
 h1, .h1,
@@ -18,13 +20,59 @@ h6, .h6 {
 
 }
 
+/* Tweak navbar brand link to be super sleek
+ * -------------------------------------------------- */
 
-/* Override Bootstrap's default container.*/
+body > .navbar {
+      font-size: 13px;
+}
 
-@media (min-width: 1200px) {
-    .container {
-        width: 970px;
-    }
+/* Change the docs' brand */
+body > .navbar .brand {
+    padding-right: 0;
+    padding-left: 0;
+    margin-left: 20px;
+    float: right;
+    font-weight: bold;
+    color: #000;
+    text-shadow: 0 1px 0 rgba(255,255,255,.1), 0 0 30px rgba(255,255,255,.125);
+    -webkit-transition: all .2s linear;
+    -moz-transition: all .2s linear;
+    transition: all .2s linear;
+}
+body > .navbar .brand:hover {
+    text-decoration: none;
+    text-shadow: 0 1px 0 rgba(255,255,255,.1), 0 0 30px rgba(255,255,255,.4);
+}
+
+/* padding for in-page bookmarks and fixed navbar */
+section {
+      padding-top: 30px;
+}
+section > .page-header,
+section > .lead {
+      color: #5a5a5a;
+
+}
+section > ul li {
+      margin-bottom: 5px;
+}
+
+/* Separators (hr) */
+.bs-docs-separator {
+      margin: 40px 0 39px;
+
+}
+
+/* Faded out hr */
+hr.soften {
+    height: 1px;
+    margin: 70px 0;
+    background-image: -webkit-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,.1), rgba(0,0,0,0));
+    background-image:    -moz-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,.1), rgba(0,0,0,0));
+    background-image:     -ms-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,.1), rgba(0,0,0,0));
+    background-image:      -o-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,.1), rgba(0,0,0,0));
+    border: 0;
 }
 
 /* Blog name and description*/
@@ -54,35 +102,6 @@ h6, .h6 {
     line-height: 1.5;
 }
 
-/* Sidebar modules for boxing content */
-.sidebar-module {
-    padding: 15px;
-    margin: 0 -15px 15px;
-}
-.sidebar-module-inset {
-    padding: 15px;
-    background-color: #f5f5f5;
-    border-radius: 4px;
-}
-.sidebar-module-inset p:last-child,
-.sidebar-module-inset ul:last-child,
-.sidebar-module-inset ol:last-child {
-    margin-bottom: 0;
-}
-
-
-/* Pagination */
-.pager {
-    margin-bottom: 60px;
-    text-align: left;
-}
-.pager > li > a {
-    width: 140px;
-    padding: 10px 20px;
-    text-align: center;
-    border-radius: 30px;
-}
-
 
 /* Blog posts */
 
@@ -94,10 +113,83 @@ h6, .h6 {
     font-size: 40px;
 }
 .blog-post-meta {
-    margin-bottom: 20px;
+    margin-bottom: 5px;
     color: #999;
+    text-align: right;
 }
 
+.blog-post-btn {
+    float: right;
+    margin-left: 10px;
+}
+
+/* Sidenav for Docs
+ * -------------------------------------------------- */
+.bs-docs-sidenav {
+    width: 228px;
+    margin: 30px 0 0;
+    padding: 0;
+    background-color: #fff;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 6px;
+    -webkit-box-shadow: 0 1px 4px rgba(0,0,0,.065);
+    -moz-box-shadow: 0 1px 4px rgba(0,0,0,.065);
+    box-shadow: 0 1px 4px rgba(0,0,0,.065);
+}
+.bs-docs-sidenav > li > a {
+    display: block;
+    width: 190px \9;
+    margin: 0 0 -1px;
+    padding: 8px 14px;
+    border: 1px solid #e5e5e5;
+}
+.bs-docs-sidenav > li:first-child > a {
+    -webkit-border-radius: 6px 6px 0 0;
+    -moz-border-radius: 6px 6px 0 0;
+    border-radius: 6px 6px 0 0;
+}
+.bs-docs-sidenav > li:last-child > a {
+    -webkit-border-radius: 0 0 6px 6px;
+    -moz-border-radius: 0 0 6px 6px;
+    border-radius: 0 0 6px 6px;
+}
+.bs-docs-sidenav > .active > a {
+    position: relative;
+    z-index: 2;
+    padding: 9px 15px;
+    border: 0;
+    text-shadow: 0 1px 0 rgba(0,0,0,.15);
+    -webkit-box-shadow: inset 1px 0 0 rgba(0,0,0,.1), inset -1px 0 0 rgba(0,0,0,.1);
+    -moz-box-shadow: inset 1px 0 0 rgba(0,0,0,.1), inset -1px 0 0 rgba(0,0,0,.1);
+    box-shadow: inset 1px 0 0 rgba(0,0,0,.1), inset -1px 0 0 rgba(0,0,0,.1);
+}
+/* Chevrons */
+.bs-docs-sidenav .icon-chevron-right {
+    float: right;
+    margin-top: 2px;
+    margin-right: -6px;
+    opacity: .25;
+}
+.bs-docs-sidenav > li > a:hover {
+    background-color: #f5f5f5;
+}
+.bs-docs-sidenav a:hover .icon-chevron-right {
+    opacity: .5;
+}
+.bs-docs-sidenav .active .icon-chevron-right,
+.bs-docs-sidenav .active a:hover .icon-chevron-right {
+    background-image: url(../img/glyphicons-halflings-white.png);
+    opacity: 1;
+}
+.bs-docs-sidenav.affix {
+    top: 40px;
+}
+.bs-docs-sidenav.affix-bottom {
+    position: absolute;
+    top: auto;
+    bottom: 270px;
+}
 
 /** Footer*/
 
