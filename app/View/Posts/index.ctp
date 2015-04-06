@@ -17,15 +17,15 @@
     ); ?></p>
 </div>
 
-<div class="row">
+<div class="row-fluid">
     <?php foreach ($posts as $post): ?>
-        <div class="col-sm-6 col-md-4 col-lg-3">
+        <div class="col-sm-6 col-md-4 col-lg-4">
           <div class = "thumbnail">
-            <h2><?php echo $post['Post']['title']; ?></h2>
+            <h2 class="text-center"><?php echo $post['Post']['title']; ?></h2>
             <p class="blog-time"><?php echo date('Y/m/d H:i:s', $post['Post']['created_at']); ?></p>
-            <p><?php echo substr($post['Post']['body'], 0, 50); ?></p>
-            <p><?php echo $this->Html->link(
-                "View details >>",
+            <p ><?php echo substr($post['Post']['body'], 0, 50); ?></p>
+            <p><?php 
+            echo $this->Html->link("View details >>",
                 array(
                     'action' => 'view',
                     $post['Post']['id']
@@ -33,8 +33,18 @@
                 array(
                     'class' => array('btn', 'btn-primary'),
                     'role' => 'button'
-                )
-            );?></p>
+                ));
+            echo $this->Form->postLink("Delete",
+                array(
+                    'action' => 'delete',
+                    $post['Post']['id']
+                ),
+                array(
+                    'class' => array('btn', 'btn-danger'),
+                    'role' => 'button',
+                    'confirm' => 'Are you sure?'
+                ));
+           ?></p>
           </div>
         </div>
     <?php endforeach; ?>

@@ -416,3 +416,59 @@ Stack Trace:
 #3 /Users/chen.junyan/my_cakephp_example/lib/Cake/Core/App.php(904): App::_checkFatalError()
 #4 [internal function]: App::shutdown()
 #5 {main}
+2015-04-06 10:24:28 Error: Fatal Error (4): syntax error, unexpected '' => array(' (T_CONSTANT_ENCAPSED_STRING), expecting ')' in [/Users/chen.junyan/my_cakephp_example/app/View/Posts/add.ctp, line 6]
+2015-04-06 10:24:28 Error: [FatalErrorException] syntax error, unexpected '' => array(' (T_CONSTANT_ENCAPSED_STRING), expecting ')'
+Request URL: /posts/add
+Stack Trace:
+#0 /Users/chen.junyan/my_cakephp_example/lib/Cake/Error/ErrorHandler.php(213): ErrorHandler::handleFatalError(4, 'syntax error, u...', '/Users/chen.jun...', 6)
+#1 [internal function]: ErrorHandler::handleError(4, 'syntax error, u...', '/Users/chen.jun...', 6, Array)
+#2 /Users/chen.junyan/my_cakephp_example/lib/Cake/Core/App.php(931): call_user_func('ErrorHandler::h...', 4, 'syntax error, u...', '/Users/chen.jun...', 6, Array)
+#3 /Users/chen.junyan/my_cakephp_example/lib/Cake/Core/App.php(904): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2015-04-06 10:42:28 Error: Fatal Error (1): Unsupported operand types in [/Users/chen.junyan/my_cakephp_example/lib/Cake/View/Helper/FormHelper.php, line 378]
+2015-04-06 10:42:28 Error: [FatalErrorException] Unsupported operand types
+Request URL: /posts/add
+Stack Trace:
+#0 /Users/chen.junyan/my_cakephp_example/lib/Cake/Error/ErrorHandler.php(213): ErrorHandler::handleFatalError(1, 'Unsupported ope...', '/Users/chen.jun...', 378)
+#1 [internal function]: ErrorHandler::handleError(1, 'Unsupported ope...', '/Users/chen.jun...', 378, Array)
+#2 /Users/chen.junyan/my_cakephp_example/lib/Cake/Core/App.php(931): call_user_func('ErrorHandler::h...', 1, 'Unsupported ope...', '/Users/chen.jun...', 378, Array)
+#3 /Users/chen.junyan/my_cakephp_example/lib/Cake/Core/App.php(904): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2015-04-06 11:00:06 Error: [MethodNotAllowedException] Method Not Allowed
+Request URL: /posts/delete/17
+Stack Trace:
+#0 [internal function]: PostsController->delete('17')
+#1 /Users/chen.junyan/my_cakephp_example/lib/Cake/Controller/Controller.php(490): ReflectionMethod->invokeArgs(Object(PostsController), Array)
+#2 /Users/chen.junyan/my_cakephp_example/lib/Cake/Routing/Dispatcher.php(193): Controller->invokeAction(Object(CakeRequest))
+#3 /Users/chen.junyan/my_cakephp_example/lib/Cake/Routing/Dispatcher.php(167): Dispatcher->_invoke(Object(PostsController), Object(CakeRequest))
+#4 /Users/chen.junyan/my_cakephp_example/app/webroot/index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2015-04-06 11:01:32 Error: [MethodNotAllowedException] Method Not Allowed
+Request URL: /posts/delete/1
+Stack Trace:
+#0 [internal function]: PostsController->delete('1')
+#1 /Users/chen.junyan/my_cakephp_example/lib/Cake/Controller/Controller.php(490): ReflectionMethod->invokeArgs(Object(PostsController), Array)
+#2 /Users/chen.junyan/my_cakephp_example/lib/Cake/Routing/Dispatcher.php(193): Controller->invokeAction(Object(CakeRequest))
+#3 /Users/chen.junyan/my_cakephp_example/lib/Cake/Routing/Dispatcher.php(167): Dispatcher->_invoke(Object(PostsController), Object(CakeRequest))
+#4 /Users/chen.junyan/my_cakephp_example/app/webroot/index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2015-04-06 11:01:56 Error: [MethodNotAllowedException] Method Not Allowed
+Request URL: /posts/delete/11
+Stack Trace:
+#0 [internal function]: PostsController->delete('11')
+#1 /Users/chen.junyan/my_cakephp_example/lib/Cake/Controller/Controller.php(490): ReflectionMethod->invokeArgs(Object(PostsController), Array)
+#2 /Users/chen.junyan/my_cakephp_example/lib/Cake/Routing/Dispatcher.php(193): Controller->invokeAction(Object(CakeRequest))
+#3 /Users/chen.junyan/my_cakephp_example/lib/Cake/Routing/Dispatcher.php(167): Dispatcher->_invoke(Object(PostsController), Object(CakeRequest))
+#4 /Users/chen.junyan/my_cakephp_example/app/webroot/index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2015-04-06 11:06:39 Error: [MethodNotAllowedException] Method Not Allowed
+Request URL: /posts/delete/11
+Stack Trace:
+#0 [internal function]: PostsController->delete('11')
+#1 /Users/chen.junyan/my_cakephp_example/lib/Cake/Controller/Controller.php(490): ReflectionMethod->invokeArgs(Object(PostsController), Array)
+#2 /Users/chen.junyan/my_cakephp_example/lib/Cake/Routing/Dispatcher.php(193): Controller->invokeAction(Object(CakeRequest))
+#3 /Users/chen.junyan/my_cakephp_example/lib/Cake/Routing/Dispatcher.php(167): Dispatcher->_invoke(Object(PostsController), Object(CakeRequest))
+#4 /Users/chen.junyan/my_cakephp_example/app/webroot/index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
