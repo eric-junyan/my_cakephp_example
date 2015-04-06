@@ -1,27 +1,43 @@
 <!-- File: /app/View/Posts/index.ctp -->
-<h1>Blog posts</h1>
-<?php echo $this->Html->link(
-     'Add Post',
-     array('controller' => 'posts', 'action' => 'add')
-); ?>
-<table>
-    <tr>
-         <th>Id</th>
-         <th>Title</th>
-         <th>Created</th>
-    </tr>
+<?php echo $this->Html->css('justified-top');?>
+<div class="container">
+<div class="jumbotron">
+     <h1>Blog posts</h1>
+     <p class="lead">You can try to post some blogs here.</p>
+     <p><?php echo $this->Html->link(
+         'Go to Post',
+         array(
+             'controller' => 'posts',
+             'action' => 'add'
+         ),
+         array(
+             'class' => array('btn','btn-lg', 'btn-success'),
+             'role' => 'button'
+         )
+    ); ?></p>
+</div>
 
-    <!-- Here is where we loop through our $posts array, printing out post info -->
-
+<div class="row">
     <?php foreach ($posts as $post): ?>
-        <tr>
-            <td><?php echo $post['Post']['id']; ?></td>
-            <td>
-                <?php echo $this->Html->link($post['Post']['title'],
-  array('controller' => 'posts', 'action' => 'view', $post['Post']['id'])); ?>
-            </td>
-            <td><?php echo date('Y/m/d H:i:s', $post['Post']['created_at']); ?></td>
-         </tr>
+        <div class="col-sm-6 col-md-4 col-lg-3">
+          <div class = "thumbnail">
+            <h2><?php echo $post['Post']['title']; ?></h2>
+            <p class="blog-time"><?php echo date('Y/m/d H:i:s', $post['Post']['created_at']); ?></p>
+            <p><?php echo substr($post['Post']['body'], 0, 50); ?></p>
+            <p><?php echo $this->Html->link(
+                "View details >>",
+                array(
+                    'action' => 'view',
+                    $post['Post']['id']
+                ),
+                array(
+                    'class' => array('btn', 'btn-primary'),
+                    'role' => 'button'
+                )
+            );?></p>
+          </div>
+        </div>
     <?php endforeach; ?>
     <?php unset($post); ?>
-</table>
+</div>
+</div>

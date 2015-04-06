@@ -24,29 +24,39 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 	<title>
 		<?php echo $cakeDescription ?>:
 		<?php echo $this->fetch('title'); ?>
-	</title>
+    </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 	<?php
 		echo $this->Html->meta('icon');
-
-		echo $this->Html->css('cake.generic');
+        echo $this->Html->css('bootstrap.min');
+        echo $this->Html->css('bootstrap-theme.min');
+        echo $this->Html->css('starter-template');
+        echo $this->Html->script('jquery-2.1.3.min');
+        echo $this->Html->script('bootstrap.min');
+		//echo $this->Html->css('cake.generic');
 
 		echo $this->fetch('meta');
-		echo $this->fetch('css');
-		echo $this->fetch('script');
+//		echo $this->fetch('css');
+//		echo $this->fetch('script');
 	?>
 </head>
 <body>
 	<div id="container">
-		<div id="header">
+<!--
+        <div id="header">
 			<h1><?php echo $this->Html->link($cakeDescription, 'http://cakephp.org'); ?></h1>
-		</div>
+        </div>
+ -->
+
+        <?php echo $this->element('headnavi'); ?>
 		<div id="content">
 
 			<?php echo $this->Session->flash(); ?>
 
 			<?php echo $this->fetch('content'); ?>
 		</div>
-		<div id="footer">
+<!--
+        <div id="footer">
 			<?php echo $this->Html->link(
 					$this->Html->image('cake.power.gif', array('alt' => $cakeDescription, 'border' => '0')),
 					'http://www.cakephp.org/',
@@ -56,7 +66,9 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 			<p>
 				<?php echo $cakeVersion; ?>
 			</p>
-		</div>
-	</div>
+        </div>
+ -->
+    </div>
+    <?php echo $this->Js->writeBuffer(); ?>
 </body>
 </html>

@@ -1,0 +1,44 @@
+body {
+      font-family: Georgia, "Times New Roman", Times, serif;
+        color: #555;
+}
+
+.footer {
+    padding-top: 40px;
+    padding-bottom: 40px;
+    margin-top: 40px;
+    border-top: 1px solid #eee;
+}
+
+/* Main marketing message and sign up button */
+.jumbotron {
+    text-align: center;
+}
+.jumbotron .btn {
+    padding: 14px 24px;
+    font-size: 21px;
+}
+
+.col-lg-4 {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.col-lg-4 p {
+    margin-right: 10px;
+    margin-left: 10px;
+}
+
+.col-lg-4 .blog-time {
+    color: #999
+}
+
+/* Responsive: Portrait tablets and up */
+@media screen and (min-width: 768px) {
+    /* Remove the padding we set earlier */
+    .masthead,
+    .marketing,
+    .footer {
+        padding-right: 0;
+        padding-left: 0;
+}
