@@ -2,3 +2,4 @@
 *.log
 app/tmp/cache/*
 app/tmp/logs/*
+app/tmp/cache/persistent/*
