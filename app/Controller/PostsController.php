@@ -3,8 +3,8 @@
 App::uses('AppController', 'Controller');
 
 class PostsController extends AppController {
-    public $helpers = array('Html', 'Form', 'Session', 'Time');
-    public $components = array('Session', 'Paginator');
+    public $helpers = array('Js', 'Html', 'Form', 'Session', 'Time');
+    public $components = array('RequestHandler', 'Session', 'Paginator');
 
 
     public function index() {
@@ -70,8 +70,31 @@ class PostsController extends AppController {
         }
     }
 
+    public function delete() {
+        if (!$this->request->is('ajax')) {
+            throw new NotFoundException(__('Invalid delete'));
+        }
+
+        if ($this->request->is('get')) {
+            throw new MethodNotAllowedException();
+        }
+        $id = $this->request->data[Post][id];
+        $this->log($id, 'debug');
+        $post = $this->Post->findById($id);
+        if (!$post) {
+            throw new NotFoundException(__('Invalid delete'));
+        }
+
+        if ($this->Post->delete($id)) {
+            $this->set('posts', $this->Post->find('all'));
+            $this->render( '/Elements/Ajaxs/post','ajax' );
+        } else {
+            throw new NotFoundException(__('Invalid delete'));
+        }
+    }
+/*
     public function delete($id = null) {
-         if (!$id) {
+        if (!$id) {
             throw new NotFoundException(__('Invalid delete'));
         }
 
@@ -98,4 +121,5 @@ class PostsController extends AppController {
 
         return $this->redirect(array('action' => 'view', '#' => $id));
     }
+ */
 }

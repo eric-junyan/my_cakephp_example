@@ -31,8 +31,10 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
         echo $this->Html->css('bootstrap.origin.min');
         echo $this->Html->css('bootstrap-theme.min');
         echo $this->Html->css('starter-template');
-        echo $this->Html->script('jquery-2.1.3.min');
+        echo $this->Html->script('jquery-2.1.3.min', array( 'inline' => 'false' ));
         echo $this->Html->script('bootstrap.min');
+
+        echo $this->Js->writeBuffer( array( 'inline' => 'true' ) );
 		//echo $this->Html->css('cake.generic');
 
 		echo $this->fetch('meta');

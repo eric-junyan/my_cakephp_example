@@ -204,3 +204,6 @@ hr.soften {
     margin-bottom: 0;
 }
 
+.invisible {
+    display: none;
+}
