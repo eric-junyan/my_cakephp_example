@@ -1,5 +1,7 @@
 *.swp
 *.log
+app/tmp/cache
+app/tmp/logs
 /Users/chen.junyan/my_cakephp_example/app/tmp/cache/*
 /Users/chen.junyan/my_cakephp_example/app/tmp/logs/*
 /Users/chen.junyan/my_cakephp_example/app/tmp/cache/persistent/*
