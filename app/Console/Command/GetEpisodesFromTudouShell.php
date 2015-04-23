@@ -2,25 +2,34 @@
 
 App::uses('File', 'Utility');
 
-class GetEpisodeIdShell extends AppShell {
+class GetEpisodesFromTudouShell extends AppShell {
     public $uses = array('Show', 'Episode');
 
     public function main() {
         $from_no =  $this->args[0];
-        $shows = $this->getShows($from_no);
-        foreach($shows as $show) {
-            if ($this->checkEpisodeIfSaved($show['Show']['id'])){ continue; }
-            print($show['Show']['name'] . " is in searching.\n");
-            print($show['Show']['id'] . "\n");
-            sleep(5);
+        $videos = $this->getVideos($from_no);
+        foreach($videos as $video) {
+            if ($this->checkEpisodeIfHasBeenFound($video['Episode']['id'])){ continue; }
+            print($video['Episode']['name'] . " is in mapping.\n");
+            print($video['Episode']['id'] . "\n");
+            sleep(1.5);
+
+            $show = $this->Show->read('name', $video['Episode']['show_id']);
+            $stage = split(" ", $video['Episode']['name'], 2);
+            $tudou_name = $show['Show']['name'] . " " . $stage[0];
+            print($tudou_name);
+
+            //print($video['Episode']['name']);
+            print("\n");
 
             try {
-                $results = $this->getEpisode($show['Show']['id'], $show['Show']['youku_id']);
-                if ($results->total === 0) {
-                    print($show['Show']['name'] . " can not be found.\n");
+                //$results = $this->getEpisode($video['Episode']['name']);
+                $results = $this->getEpisode($tudou_name);
+                if ($results->page->totalCount < 1) {
+                    print($video['Episode']['name'] . " can not be found.\n");
                     continue;
                 }
-                $this->insertIntoEpisodes($results->videos, $show['Show']['id']);
+                $this->insertIntoEpisode($results->results[0], $video['Episode']['id']);
             } catch(Exception $e) {
                 print("there is something wrong in http get, lets pass it.\n");
                 print($e);
@@ -30,76 +39,44 @@ class GetEpisodeIdShell extends AppShell {
 
     }
 
-    private function checkEpisodeIfSaved($show_id) {
-        return !empty($this->Episode->findByShowId($show_id));
+    private function checkEpisodeIfHasBeenFound($episode_id) {
+        return empty($this->Episode->read('youku_id' , $episode_id)['Episode']['youku_id']);
     }
 
-    private function getShows($from_no) {
-        return $this->Show->find('all', array(
+    private function getVideos($from_no) {
+        return $this->Episode->find('all', array(
             'conditions'=>array(
-                'Show.id >=' => $from_no
+                'Episode.id >=' => $from_no
             )
         ));
     }
 
-    private function getEpisode($show_id, $youku_id) {
-        $url = "https://openapi.youku.com/v2/shows/videos.json";
+    private function getEpisode($youku_name) {
+        $url = "http://api.tudou.com/v6/video/search";
         $data = array(
-            'client_id' => '987302dd59060846',
-            'show_id' => $youku_id,
-            'count' => 100
+            'app_key' => 'dcef104a61864e63',
+            'format' => 'json',
+            'kw' => $youku_name
         );
         App::uses('HttpSocket', 'Network/Http');
         $HttpSocket = new HttpSocket();
         $results = $HttpSocket->get($url, array($data));
         $response = json_decode($results->body);
 
-        $this->Show->updateAll(
-            array('Show.episode_total' => $response->total),
-            array('Show.id' => $show_id)
-        );
-
-        if ($response->total > 100) {
-            $turns = ceil($response->total / 100);
-            for($i = 1;$i < $turns ; $i++) {
-                sleep(4);
-                print("In searching Page".($i+1)."\n");
-                $extra_data = array(
-                    'client_id' => '987302dd59060846',
-                    'show_id' => $youku_id,
-                    'count' => 100,
-                    'page' => $i+1
-                );
-                $extra_results = $HttpSocket->get($url, array($extra_data));
-                $extra_response = json_decode($extra_results->body);
-                $response->videos = array_merge($response->videos, $extra_response->videos);
-            }
-        }
         return $response;
     }
 
-    private function insertIntoEpisodes($episodes, $show_id){
-        $set_state_flag = 0;
-        foreach($episodes as $episode) {
-            $episode_info = array(
-                'youku_id' => $episode->id,
-                'show_id' => $show_id,
-                'name' => $episode->title,
-                'youku_state' => $episode->state,
-                'duration' => $episode->duration,
-                'episode_no' => $episode->stage,
-                'image_url' => $episode->thumbnail,
-                'released_at' => $episode->published
-            );
-            $this->Episode->create();
-            $this->Episode->save($episode_info);
-            if ( $set_state_flag === 0 ) {
-                $this->Show->updateAll(
-                    array('Show.youku_state' => "'$episode->state'"),
-                    array('Show.id' => $show_id)
-                );
-                $set_state_flag = 1;
-            }
-        }
+    private function insertIntoEpisode($episode, $episode_id){
+        print($episode->title);
+        print("\n");
+        print("\n");
+        $this->Episode->updateAll(
+            array(
+                'Episode.tudou_name' => "'$episode->title'",
+                'Episode.tudou_id' => "'$episode->itemCode'",
+                'Episode.description' => "'$episode->description'",
+            ),
+            array('Episode.id' => $episode_id)
+        );
     }
 }

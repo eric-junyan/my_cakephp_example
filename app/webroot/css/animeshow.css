@@ -21,3 +21,20 @@
 .show-sub-info {
     font-style: italic;
 }
+
+.thumbnail {
+    margin-top: 10px;
+    text-align: center;
+    min-height: 170px;
+}
+
+.thumbnail>img {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.poster {
+    width: 300%;
+    height: 200%;
+    vertical-align: text-top;
+}
